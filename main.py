@@ -61,6 +61,23 @@ def background_reminder():
     
     CONSOLE.print(f"[green bold]Success! Reminder set for {user_time}.[/green bold]")
     time.sleep(2)
+
+def disable_reminder():
+    task_name = "YagballsBirthdayCheck"
+    cmd = ['schtasks', '/Delete', '/TN', task_name, '/F']
+    
+    anim_load("Disabling Reminders...", duration=0.05)
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    
+    if result.returncode == 0:
+        CONSOLE.print("[green bold]Success! Reminders disabled.[/green bold]")
+    else:
+        if "The specified task name was not found" in result.stderr:
+             CONSOLE.print("[yellow]Reminders were already disabled.[/yellow]")
+        else:
+             CONSOLE.print(f"[red]Error:[/red] {result.stderr}")
+    time.sleep(2)
+
   #Generates a mini calendar table for a single month.
 def get_month_panel(year, month, all_bdays):
     cal_table = Table(
@@ -150,13 +167,13 @@ def main_menu():
         CONSOLE.print(Align.center("[dim]Legend: [green]Today[/green] | [red]Birthday[/red][/dim]\n"))
         menu = Table.grid(padding=(0, 2))
         menu.add_column(style="bold white"); menu.add_column(style="bold white")
-        menu.add_row("[gold1 bold][1][/gold1 bold]", "[green bold]Add Birthday 📝[/green bold]",     "[gold1 bold][5][/gold1 bold]", "[green bold]Next Year ➡️[/green bold]")
-        menu.add_row("[gold1 bold][2][/gold1 bold]", "[green bold]Search Birthday 🔍[/green bold]",   "[gold1 bold][6][/gold1 bold]", "[green bold]Prev Year ⬅️[/green bold]")
-        menu.add_row("[gold1 bold][3][/gold1 bold]", "[green bold]Delete Birthday 🗑️[/green bold]",    "[gold1 bold][7][/gold1 bold]", "[green bold]Exit 🚪[/green bold]")
-        menu.add_row("[gold1 bold][4][/gold1 bold]", "[green bold]Enable Reminders 🔔[/green bold]",  "", "")
+        menu.add_row("[gold1 bold][1][/gold1 bold]", "[green bold]Add Birthday 📝[/green bold]",     "[gold1 bold][5][/gold1 bold]", "[green bold]Disable Reminders 🔕[/green bold]")
+        menu.add_row("[gold1 bold][2][/gold1 bold]", "[green bold]Search Birthday 🔍[/green bold]",   "[gold1 bold][6][/gold1 bold]", "[green bold]Next Year ➡️[/green bold]")
+        menu.add_row("[gold1 bold][3][/gold1 bold]", "[green bold]Delete Birthday 🗑️[/green bold]",    "[gold1 bold][7][/gold1 bold]", "[green bold]Prev Year ⬅️[/green bold]")
+        menu.add_row("[gold1 bold][4][/gold1 bold]", "[green bold]Enable Reminders 🔔[/green bold]",  "[gold1 bold][8][/gold1 bold]", "[green bold]Exit 🚪[/green bold]")
         CONSOLE.print(Align.center(menu))
         
-        choice = Prompt.ask("\n[cyan]Select an option[/cyan]", choices=['1', '2', '3', '4', '5', '6', '7'])
+        choice = Prompt.ask("\n[cyan]Select an option[/cyan]", choices=['1', '2', '3', '4', '5', '6', '7', '8'])
 
         if choice == '1':
             CONSOLE.print(Panel("[gold1]Add New Entry[/gold1]", border_style="gold1"))
@@ -170,9 +187,9 @@ def main_menu():
                 is_duplicate = any(b['name'].lower() == name.lower() and b['month'] == m and b['day'] == d for b in all_b)
                 #prevents duplicate 
                 if is_duplicate:
-                     CONSOLE.print(f"[red bold]Warning: '{name}' with birthday {m}-{d} already exists![/red bold]")
-                     if Prompt.ask("[yellow]Add anyway? (y/n)[/yellow]") != 'y':
-                         continue
+                      CONSOLE.print(f"[red bold]Warning: '{name}' with birthday {m}-{d} already exists![/red bold]")
+                      if Prompt.ask("[yellow]Add anyway? (y/n)[/yellow]") != 'y':
+                          continue
                 
                 ht.add_birthday(name, f"{m}-{d}") 
                 CONSOLE.print("[green bold]Success! Entry Saved.[/green bold]")
@@ -228,9 +245,10 @@ def main_menu():
             time.sleep(2)
 
         elif choice == '4': background_reminder()
-        elif choice == '5': view_year += 1
-        elif choice == '6': view_year -= 1
-        elif choice == '7':
+        elif choice == '5': disable_reminder()
+        elif choice == '6': view_year += 1
+        elif choice == '7': view_year -= 1
+        elif choice == '8':
             anim_load("Saving Data...", steps=20)
             break
 
