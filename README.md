@@ -1,3 +1,8 @@
+### YAGBALLS TEAM PRESENTS
+#Y- Yeah A-Amazing G-Great. 
+#Balls!? because we play ball YOLO!
+
+
 # DSA-Season-2
 Project for DSA (Hashing)
 # 🎂 Yagballs Birthday Tracker (DSA Season 2)
@@ -52,10 +57,52 @@ Ensure you have Python installed. Then, install the required dependencies:
 
 ```bash
 pip install rich plyer pygame
-
+```
 ### 2. Audio Setup
 Place an MP3 file named **`alert.mp3`** inside the project folder. (Required for sound to work).
 
 ### 3. Run the App
 Open your terminal (Command Prompt or PowerShell) and run Make sure its Administrator!:
+```bash
+python main.py
+```
+---
 
+## 📖 How to Use
+
+### Main Menu Options
+1. **Add Birthday 📝**: Enter a Name and Date (MM-DD). The system checks for duplicates automatically.
+2. **Search Birthday 🔍**: Find birthdays by Name or Date.
+3. **Delete Birthday 🗑️**: View a table of all entries and select a name to remove.
+4. **Enable Reminders 🔔**:
+   * Input a time (e.g., `16:30`).
+   * The app creates a **Windows Task**.
+   * You can now close the app; you will be notified daily at that time!
+5. **Disable Reminders 🔕**: Turns off the background task.
+6. **Navigation**: Use **Next Year** and **Prev Year** to scroll through the calendar view.
+
+---
+
+## 🛠️ Troubleshooting
+
+**"The reminders didn't pop up!"**
+* Ensure you ran `main.py` as **Administrator** if you have permission issues.
+* Check if `alert.mp3` exists in the folder.
+* Check Windows "Focus Assist" or "Do Not Disturb" settings.
+
+**"Module not found error"**
+* Make sure you installed the requirements: `pip install rich plyer pygame`
+
+---
+
+## 👨‍💻 Credits
+
+**DSA Yagballs Squad**
+* Caiga, Ceasar Ivan A. - main.py, background_checker.py
+* Calayag, James Mathew - main.py (menu section)
+* Clarete, Marc Arthur -hash_table.py
+* Magsila, Benjamin T III - main.py (calendar section)
+* Noriesta, Don B. - utils.py
+
+---
+*Submitted to: Polytechnic University of the Philippines - Quezon City Branch*
