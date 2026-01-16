@@ -4,7 +4,7 @@
 
 # YAGBALLS TEAM PRESENTS
 ### Y- Yeah A-Amazing G-Great. 
-### Balls!? because we play ball YOLO!
+### And we are always ballin, meaning? We are always having fun. That is Life!
 
 
 # DSA-Season-2
@@ -46,7 +46,7 @@ A robust, console-based Birthday Calendar System built with Python. It features 
 ## 📸 Screenshots
 | **Main Dashboard** | **Popup Notification** |
 |:---:|:---:|
-| ![Dashboard](https://github.com/Donskieee/DSA-Season-2/blob/main/Screenshot%202026-01-17%20005703.png) | ![Popup](insert_image_link_here) |
+| ![Dashboard](https://github.com/Donskieee/DSA-Season-2/blob/main/Screenshot%202026-01-17%20005703.png) | ![Popup](https://github.com/Donskieee/DSA-Season-2/blob/main/unnamed.png) |
 
 ---
 
