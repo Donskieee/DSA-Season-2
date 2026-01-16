@@ -1,3 +1,7 @@
+![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
+
 # YAGBALLS TEAM PRESENTS
 ### Y- Yeah A-Amazing G-Great. 
 ### Balls!? because we play ball YOLO!
@@ -20,6 +24,10 @@ A robust, console-based Birthday Calendar System built with Python. It features 
 * **Rich UI:** Professional styling with Gold borders and Cyan text using the `rich` library.
 * **Loading Animations:** Smooth loading bars for system processes.
 
+### 🛡️ **Data Integrity & Utilities**
+* **Auto-Healing Database:** If the main database is deleted, the system automatically restores it from the backup file on startup.
+* **Bulk Import:** Supports dragging and dropping `.csv` files to add hundreds of birthdays instantly.
+
 ### 🔔 **Smart Persistent Reminders**
 * **Background Worker:** Runs silently in the background using Windows Task Scheduler.
 * **Custom Schedule:** Users choose exactly what time they want to be notified (e.g., 7:00 AM).
@@ -34,6 +42,11 @@ A robust, console-based Birthday Calendar System built with Python. It features 
 * **Custom Hash Table:** Implements a hash map from scratch (no Python `dict` for storage).
 * **Collision Handling:** Uses **Chaining** (Linked Lists/Arrays) to handle multiple birthdays on the same hash index.
 * **Complexity:** Achieves **O(1)** average time complexity for adding, searching, and deleting entries.
+
+## 📸 Screenshots
+| **Main Dashboard** | **Popup Notification** |
+|:---:|:---:|
+| ![Dashboard](insert_image_link_here) | ![Popup](insert_image_link_here) |
 
 ---
 
@@ -74,12 +87,12 @@ python main.py
 1. **Add Birthday 📝**: Enter a Name and Date (MM-DD). The system checks for duplicates automatically.
 2. **Search Birthday 🔍**: Find birthdays by Name or Date.
 3. **Delete Birthday 🗑️**: View a table of all entries and select a name to remove.
-4. **Enable Reminders 🔔**:
-   * Input a time (e.g., `16:30`).
-   * The app creates a **Windows Task**.
-   * You can now close the app; you will be notified daily at that time!
+4. **Enable Reminders 🔔**: Set a daily time for the background worker to notify you.
 5. **Disable Reminders 🔕**: Turns off the background task.
 6. **Navigation**: Use **Next Year** and **Prev Year** to scroll through the calendar view.
+7. **Backup Data 💾**: Manually create a safe copy of your database (`backup_birthdays.json`).
+8. **Import CSV 📂**: Bulk import birthdays from an Excel/CSV file (Format: Name, Month, Day).
+0. **Exit 🚪**: Save data and close the application.
 
 ---
 
