@@ -46,7 +46,7 @@ A robust, console-based Birthday Calendar System built with Python. It features 
 ## 📸 Screenshots
 | **Main Dashboard** | **Popup Notification** |
 |:---:|:---:|
-| ![Dashboard](insert_image_link_here) | ![Popup](insert_image_link_here) |
+| ![Dashboard](https://imgur.com/a/MZQIh4R) | ![Popup](insert_image_link_here) |
 
 ---
 
