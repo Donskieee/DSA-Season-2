@@ -19,14 +19,14 @@ def is_valid_date(date_str):
     month = int(month_str)
     day = int(day_str)
 
-    # Month must be 1–12
+    
     if month < 1 or month > 12:
         return False
 
-    # Days per month (non-leap year, fine for birthdays)
+    #non leap year
     days_in_month = {
-        1: 31,  # Jan
-        2: 29,  # Feb (allow Feb 29)
+        1: 31,  
+        2: 28,  
         3: 31,
         4: 30,
         5: 31,
@@ -39,9 +39,10 @@ def is_valid_date(date_str):
         12: 31
     }
 
-    # Day must be valid for the month
+    
     if day < 1 or day > days_in_month[month]:
         return False
 
 
     return True
+
