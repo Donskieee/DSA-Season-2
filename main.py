@@ -3,6 +3,8 @@ import os
 import time
 import subprocess #messenger between python and windows 
 import calendar
+import shutil # For file backup operations
+import csv    # For reading CSV files
 from datetime import datetime
 from rich.console import Console
 from rich.table import Table
@@ -76,6 +78,71 @@ def disable_reminder():
              CONSOLE.print("[yellow]Reminders were already disabled.[/yellow]")
         else:
              CONSOLE.print(f"[red]Error:[/red] {result.stderr}")
+    time.sleep(2)
+
+def backup_data():
+    """Creates a backup of the JSON database."""
+    CONSOLE.print(Panel("[gold1]Backup Database[/gold1]", border_style="gold1"))
+    try:
+        if os.path.exists("birthdays.json"):
+            shutil.copy("birthdays.json", "backup_birthdays.json")
+            anim_load("Creating Backup...")
+            CONSOLE.print("[green bold]Success! Backup created as 'backup_birthdays.json'.[/green bold]")
+        else:
+            CONSOLE.print("[red]No database found to backup.[/red]")
+    except Exception as e:
+        CONSOLE.print(f"[red]Error creating backup: {e}[/red]")
+    time.sleep(2)
+
+def import_csv():
+    """Bulk imports birthdays from a CSV file."""
+    CONSOLE.print(Panel("[gold1]Import from CSV[/gold1]", border_style="gold1"))
+    
+    
+    current_dir = os.getcwd()
+    csv_files = [f for f in os.listdir(current_dir) if f.lower().endswith('.csv')]
+    
+    if csv_files:
+        CONSOLE.print("[cyan]Found CSV files in folder:[/cyan]")
+        list_table = Table(box=box.SIMPLE, show_header=False)
+        list_table.add_column("File", style="green bold")
+        for f in csv_files:
+            list_table.add_row(f)
+        CONSOLE.print(list_table)
+    else:
+        CONSOLE.print("[yellow]No CSV files found in the current directory.[/yellow]")
+        CONSOLE.print("[dim]You can still drag-and-drop a file from another folder.[/dim]")
+    
+
+    CONSOLE.print("\n[dim]Format required: Name,Month,Day (No header row)[/dim]")
+    
+    file_path = Prompt.ask("[cyan]Enter CSV filename or path[/cyan]").strip().replace('"', '') 
+    
+    if not os.path.exists(file_path):
+        CONSOLE.print("[red]File not found![/red]")
+        time.sleep(2); return
+
+    anim_load("Importing Data...")
+    count = 0
+    try:
+        with open(file_path, 'r') as f:
+            reader = csv.reader(f)
+            for row in reader:
+                # Ensure row has at least 3 columns (Name, Month, Day)
+                if len(row) >= 3:
+                    name = row[0].strip().title()
+                    try:
+                        m = int(row[1])
+                        d = int(row[2])
+                        # Basic validation before adding
+                        if 1 <= m <= 12 and 1 <= d <= 31:
+                             ht.add_birthday(name, f"{m}-{d}")
+                             count += 1
+                    except ValueError:
+                        continue # Skip bad rows
+        CONSOLE.print(f"[green bold]Success! Imported {count} entries.[/green bold]")
+    except Exception as e:
+        CONSOLE.print(f"[red]Error importing CSV: {e}[/red]")
     time.sleep(2)
 
   #Generates a mini calendar table for a single month.
@@ -167,17 +234,19 @@ def main_menu():
         CONSOLE.print(Align.center("[dim]Legend: [green]Today[/green] | [red]Birthday[/red][/dim]\n"))
         menu = Table.grid(padding=(0, 2))
         menu.add_column(style="bold white"); menu.add_column(style="bold white")
-        menu.add_row("[gold1 bold][1][/gold1 bold]", "[green bold]Add Birthday 📝[/green bold]",     "[gold1 bold][5][/gold1 bold]", "[green bold]Disable Reminders 🔕[/green bold]")
-        menu.add_row("[gold1 bold][2][/gold1 bold]", "[green bold]Search Birthday 🔍[/green bold]",   "[gold1 bold][6][/gold1 bold]", "[green bold]Next Year ➡️[/green bold]")
-        menu.add_row("[gold1 bold][3][/gold1 bold]", "[green bold]Delete Birthday 🗑️[/green bold]",    "[gold1 bold][7][/gold1 bold]", "[green bold]Prev Year ⬅️[/green bold]")
-        menu.add_row("[gold1 bold][4][/gold1 bold]", "[green bold]Enable Reminders 🔔[/green bold]",  "[gold1 bold][8][/gold1 bold]", "[green bold]Exit 🚪[/green bold]")
+        menu.add_row("[gold1 bold][1][/gold1 bold]", "[green bold]Add Birthday 📝[/green bold]",     "[gold1 bold][6][/gold1 bold]", "[green bold]Next Year ➡️[/green bold]")
+        menu.add_row("[gold1 bold][2][/gold1 bold]", "[green bold]Search Birthday 🔍[/green bold]",   "[gold1 bold][7][/gold1 bold]", "[green bold]Prev Year ⬅️[/green bold]")
+        menu.add_row("[gold1 bold][3][/gold1 bold]", "[green bold]Delete Birthday 🗑️[/green bold]",    "[gold1 bold][8][/gold1 bold]", "[green bold]Backup Data 💾[/green bold]")
+        menu.add_row("[gold1 bold][4][/gold1 bold]", "[green bold]Enable Reminders 🔔[/green bold]",  "[gold1 bold][9][/gold1 bold]", "[green bold]Import CSV 📂[/green bold]")
+        menu.add_row("[gold1 bold][5][/gold1 bold]", "[green bold]Disable Reminders 🔕[/green bold]", "[gold1 bold][0][/gold1 bold]", "[green bold]Exit 🚪[/green bold]")
         CONSOLE.print(Align.center(menu))
         
-        choice = Prompt.ask("\n[cyan]Select an option[/cyan]", choices=['1', '2', '3', '4', '5', '6', '7', '8'])
+        choice = Prompt.ask("\n[cyan]Select an option[/cyan]", choices=['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'])
 
         if choice == '1':
             CONSOLE.print(Panel("[gold1]Add New Entry[/gold1]", border_style="gold1"))
-            name = Prompt.ask("[cyan]Name[/cyan]")
+            # Auto-Format Name
+            name = Prompt.ask("[cyan]Name[/cyan]").strip().title()
             date_str = Prompt.ask("[cyan]Date (MM-DD)[/cyan]")
             
             anim_load("Checking database...")
@@ -248,7 +317,9 @@ def main_menu():
         elif choice == '5': disable_reminder()
         elif choice == '6': view_year += 1
         elif choice == '7': view_year -= 1
-        elif choice == '8':
+        elif choice == '8': backup_data() 
+        elif choice == '9': import_csv()  
+        elif choice == '0':
             anim_load("Saving Data...", steps=20)
             break
 

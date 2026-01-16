@@ -1,5 +1,6 @@
 import json
 import os
+import shutil # Added to handle the auto-restore copying
 
 class BirthdayHash:
     def __init__(self, size=366): # Size 366 covers all possible days roughly
@@ -8,6 +9,7 @@ class BirthdayHash:
         # Each bucket will store tuples: (Date_Key, [List_of_Names])
         self.table = [[] for _ in range(self.size)]
         self.filename = "birthdays.json"
+        self.backup_filename = "backup_birthdays.json" # Define backup name
         self.load_data()  # Load data when program starts
 
     def hash_core(self, date_key): 
@@ -94,10 +96,20 @@ class BirthdayHash:
             json.dump(data_to_save, f, indent=4)
 
     def load_data(self):
-        """Loads from JSON into the Hash Table."""
         if not os.path.exists(self.filename):
-            return
-        
+            # If main file missing, checks for the backup.
+            if os.path.exists(self.backup_filename):
+                print("⚠️ Main database missing! Restoring from backup...")
+                try:
+                    shutil.copy(self.backup_filename, self.filename)
+                    print("✅ Data successfully restored.")
+                except Exception as e:
+                    print(f"❌ Failed to restore backup: {e}")
+                    return
+            else:
+                # No main file AND no backup file
+                return 
+
         try:
             with open(self.filename, 'r') as f:
                 data = json.load(f)
