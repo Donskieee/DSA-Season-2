@@ -1,11 +1,7 @@
 # utils.py
 
 def is_valid_date(date_str):
-    """
-    Validates a date in MM-DD format.
-    Returns True if valid, False otherwise.
-    """
-
+    
     # Check basic format
     if not isinstance(date_str, str):
         return False
@@ -46,5 +42,6 @@ def is_valid_date(date_str):
     # Day must be valid for the month
     if day < 1 or day > days_in_month[month]:
         return False
+
 
     return True
