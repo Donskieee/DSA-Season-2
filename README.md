@@ -2,9 +2,12 @@
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
 
-# YAGBALLS TEAM PRESENTS
-### Y- Yeah A-Amazing G-Great. 
-### And we are always ballin, meaning? We are always having fun. That is Life!
+### And we are always ballin, meaning? We are always having fun. That is Life! 
+### Of course we also play ball 🏀 <img src="https://i.imgur.com/1D4IxrI.png" height="50"/>
+
+# Group 1 Pokédex: Sorting Algorithm Visualizer
+
+![Project Banner](https://i.imgur.com/YUMxZGe.png)
 
 
 # DSA-Season-2
