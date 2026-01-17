@@ -1,13 +1,10 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)
 ![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
 ![Status](https://img.shields.io/badge/Status-Completed-success?style=for-the-badge)
-
+# YAGBALLS TEAM PRESENTS
+### Y- Yeah A-Amazing G-Great. 
 ### And we are always ballin, meaning? We are always having fun. That is Life! 
 ### Of course we also play ball 🏀 <img src="https://i.imgur.com/1D4IxrI.png" height="50"/>
-
-# Group 1 Pokédex: Sorting Algorithm Visualizer
-
-![Project Banner](https://i.imgur.com/YUMxZGe.png)
 
 
 # DSA-Season-2
@@ -103,9 +100,12 @@ python main.py
 
 **"The reminders didn't pop up!"**
 * Ensure you ran `main.py` as **Administrator** if you have permission issues.
-* Check if `alert.mp3` exists in the folder.
 * Check Windows "Focus Assist" or "Do Not Disturb" settings.
+* Ensure your laptop is plugged, currently even with the code in main.py line 54-61, we can't bypass the condition of needing to be plugged to run.
 
+**"There is no sound in the popup!"**
+* Check if `alert.mp3` exists in the folder.
+* 
 **"Module not found error"**
 * Make sure you installed the requirements: `pip install rich plyer pygame`
 
@@ -114,7 +114,7 @@ python main.py
 ## 👨‍💻 Credits
 
 **DSA Yagballs Squad**
-* Caiga, Ceasar Ivan A. - main.py, background_checker.py
+* Caiga, Ceasar Ivan A. - main.py, background_checker.py, Heroes.csv
 * Calayag, James Mathew - main.py (menu section)
 * Clarete, Marc Arthur -hash_table.py
 * Magsila, Benjamin T III - main.py (calendar section)
@@ -122,3 +122,5 @@ python main.py
 
 ---
 *Submitted to: Polytechnic University of the Philippines - Quezon City Branch*
+---
+*Disclaimer: This README.md file was generated with the assistance of AI (Google Gemini) to efficiently summarize our program's logic and architecture, allowing the team to focus on development and lessen workload.*
