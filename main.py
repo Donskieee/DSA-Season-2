@@ -111,9 +111,7 @@ def import_csv():
         CONSOLE.print(list_table)
     else:
         CONSOLE.print("[yellow]No CSV files found in the current directory.[/yellow]")
-        CONSOLE.print("[dim]You can still drag-and-drop a file from another folder.[/dim]")
     
-
     CONSOLE.print("\n[dim]Format required: Name,Month,Day (No header row)[/dim]")
     
     file_path = Prompt.ask("[cyan]Enter CSV filename or path[/cyan]").strip().replace('"', '') 
