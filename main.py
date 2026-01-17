@@ -225,7 +225,7 @@ def main_menu():
 
     while True:
         clear_screen()
-        CONSOLE.print(Panel(Align.center("[bold cyan1 underline]🎂 YAGBALLS BIRTHDAY TRACKER 🎂[/bold cyan1 underline]\n[dim]DSA Project[/dim]"), border_style="gold1"))
+        CONSOLE.print(Panel(Align.center("[bold cyan1 underline]🎂 YAGBALLS BIRTHDAY TRACKER 🎂[/bold cyan1 underline]\n[dim]DSA Project Season 2[/dim]"), border_style="gold1"))
         
         display_year_view(view_year)
         
