@@ -66,7 +66,7 @@ class BirthdayHash:
         return None
 
     def search_by_name(self, name_to_find):
-        # Slower O(N) search, but necessary if Date is the key.
+        # Slower O(N) search, but necessary if name is the key.
         # We have to look through every bucket.
         found_matches = []
         for bucket in self.table:
